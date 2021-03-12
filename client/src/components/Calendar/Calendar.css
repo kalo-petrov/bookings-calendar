@@ -1,0 +1,19 @@
+.Calendar {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    padding: 10px;
+  }
+
+  .FreeDay {
+    background-color: #85dd79cc;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+   
+    text-align: center;
+  }
+
+  .BookedDay {
+    background-color: #caa3a3cc;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+
+    text-align: center;
+  }
