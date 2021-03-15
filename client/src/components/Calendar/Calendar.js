@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import Day from '../Day/Day';
+import Reservation from '../Reservation/Reservation';
 import './Calendar.css';
 
 const Calendar = () => {
     const [dates, setDates] = useState([]);
+    const [reservations, setReservations] = useState([]);
 
     useEffect(() => {
         fetch('http://localhost:3000/dates')
@@ -11,6 +13,13 @@ const Calendar = () => {
             .then((data) => setDates(data));
     }, []);
 
+    useEffect(() => {
+        fetch('http://localhost:3000/reservations')
+            .then((data) => data.json())
+            .then((data) => setReservations(data));
+    }, []);
+
+    
     return (
         <div className='Calendar'>
             {dates?.map((dateDetails) => {
@@ -21,9 +30,13 @@ const Calendar = () => {
                                 ? 'FreeDay'
                                 : 'BookedDay'
                         }
-                        key={dateDetails.date}
+                        key={dateDetails.id}
                     >
-                        <Day dateDetails={dateDetails} />{' '}
+                        {dateDetails.status === 'booked' ? (
+                            <Reservation reservations={reservations} dateDetails={dateDetails} />
+                        ) : (
+                            <Day dateDetails={dateDetails} />
+                        )}
                     </div>
                 );
             })}

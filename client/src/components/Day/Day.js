@@ -1,7 +1,7 @@
 const Day = ({ dateDetails }) => {
     return (
         <div>
-            <h4>{dateDetails.date}</h4>
+            <h4>{dateDetails.id}</h4>
             <p>Status: {dateDetails.status}</p>
             <p>Price: ${dateDetails.price}</p>
         </div>
